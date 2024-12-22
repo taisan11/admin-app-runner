@@ -14,6 +14,8 @@ jobs:
               uses: astral-sh/setup-uv@v4
             - name: Set up Python
               run: uv python install
+            - name: uv venv setup
+              run: uv venv setup
             - name: Install dependencies
               run: uv sync
             - name: venv
