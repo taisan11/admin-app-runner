@@ -1,1 +1,1 @@
-nuitka --standalone --onefile --windows-console-mode=disable --include-module=pystray --include-module=PIL --include-package=TkEasyGUI hello.py
+pyinstaller .\hello.py --onefile  --hide-console hide-early -n="admin-app-runner"
