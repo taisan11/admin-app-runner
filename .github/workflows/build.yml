@@ -12,16 +12,22 @@ jobs:
 
             - name: Install uv
               uses: astral-sh/setup-uv@v4
+
             - name: Set up Python
               run: uv python install
+
             - name: uv venv setup
               run: uv venv setup
+
             - name: Install dependencies
               run: uv sync
-            - name: venv
-              run: .\venv\Scripts\activate.ps1
-            - name: Build
-              run: .\build.ps1
+
+            - name: Activate venv and Build
+              shell: pwsh
+              run: |
+                .\venv\Scripts\Activate.ps1
+                .\build.ps1
+
             - name: Upload artifact
               uses: actions/upload-artifact@v4
               with:
