@@ -69,7 +69,7 @@ def run_as_admin():
 
 # define layout
 layout = [
-    [eg.Text("File:"), eg.InputText("",size=(30,1)), eg.FileBrowse("Select",key="file")],
+    [eg.Text("File:"), eg.InputText("",size=(30,1),key="filepath"), eg.FileBrowse("Select",key="file")],
     [eg.Button("Upgrade Administrator"),eg.Button("Task Tray")],
     [eg.Button("run!!"),eg.Button("OpenSetting")],
 ]
@@ -84,7 +84,7 @@ settingLayout = [
 with eg.Window("Admin app runner", layout,resizable=True) as window:
     for event, values in window.event_iter():
         if event == "run!!":
-            run_with_admin(values["file"])
+            run_with_admin(values["filepath"])
         elif event == "Upgrade Administrator":
             run_as_admin()
         elif event == "Task Tray":
@@ -94,8 +94,9 @@ with eg.Window("Admin app runner", layout,resizable=True) as window:
             with eg.Window("Setting", settingLayout) as settingWindow:
                 for Setevent, Setvalues in settingWindow.event_iter():
                     if Setevent == "Save":
-                        window.title = Setvalues["title"]
-                        window.set_icon(Setvalues["icon"])
+                        window.set_title(Setvalues["title"])
+                        if Setvalues["icon"] != "icon.ico":
+                            window.set_icon(Setvalues["icon"])
                         settingWindow.close()
         elif event == "-RESTORE-":
             window.un_hide()  # ウィンドウを再表示する
