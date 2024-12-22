@@ -16,17 +16,11 @@ jobs:
             - name: Set up Python
               run: uv python install
 
-            - name: uv venv setup
-              run: uv venv setup
-
             - name: Install dependencies
               run: uv sync
 
             - name: Activate venv and Build
-              shell: pwsh
-              run: |
-                .\venv\Scripts\Activate.ps1
-                .\build.ps1
+              run: .\build.ps1
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
